@@ -1,0 +1,10 @@
+body {
+    background-image: url(../img/fondo.jpg);
+    background-size: cover; /* Ajusta el tamaño de la imagen al tamaño del body */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    background-attachment: fixed; /* Fija la imagen en su posición al hacer scroll */
+}
+#imagen{
+
+    background-image: url(../img/icons8-liga-nacional-de-fútbol-50.png);
+}

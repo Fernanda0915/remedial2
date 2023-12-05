@@ -1,0 +1,161 @@
+{% load static %} 
+
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" /> 
+
+  <link rel="stylesheet" href="{% static 'css/estilo.css' %}" /> <!-- Link al CSS custom -->
+
+  <title>NFL</title> 
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-dark">
+
+    <div class="container-fluid">
+    
+      <a class="navbar-brand text-light" href="#"><img src=".././static/img/im.png" alt="" /></a>
+      
+      <button class="navbar-toggler bg-dark-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> <!-- Botón para collapsed menu mobile -->
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <ul class="navbar-nav">
+        
+          <li class="nav-item">
+          
+            <a class="nav-link active text-light" aria-current="page" href="#">INICIO</a>
+            
+          </li>
+          
+        </ul>
+        
+      </div>
+      
+    </div>
+    
+  </nav>
+
+  <div class="container">
+
+    <br />
+    
+    <div class="card">
+    
+      <h5 class="card-header display-4 text-lg-center">NFL</h5> <!-- Título NFL -->
+       
+      <div class="card-body">
+       
+       <a href="/crear/" class="btn btn-primary"> Crear </a>
+       <br />
+       
+
+      
+        
+      </div>
+      
+    </div>
+
+    <br />
+    {% block content %}
+    <div class="card">
+    
+      <table class="table">
+      
+        <thead>
+        
+          <tr>
+          
+            <th>#</th> 
+            
+            <th>Equipos</th> 
+            
+            <th>Jugadores</th> 
+            
+            <th>Estadio</th>
+            
+            <th></th> 
+            
+          </tr>
+          
+        </thead>
+
+        <tbody>
+        
+          {% for equipos in equipos %} 
+          
+          <tr>
+          
+            <td>{{ equipos.id }}</td>
+            
+            <td>{{ equipos.nombre }}</td> 
+            
+            <td>{{ equipos.evento }}</td> 
+            
+            {% for equipo in equipos %} 
+            
+              {% if equipo.jugadores == jugadores %}
+              
+                <td>{{ jugadores.nombre }}</td> 
+
+                <td>{{ jugadores.numero }}</td> 
+
+                <td>{{ jugadores.posicion }}</td> 
+                
+                {% for estadio in estadios %} 
+
+                  {% if estadio.equipo == equipo %} 
+                  
+                    <td>{{ estadio.nombre }}</td> 
+
+                    <td>{{ estadio.capacidad }}</td> 
+
+                    <td>{{ estadio.tamaño }}</td> 
+                    
+                    <td>
+                    
+                      <a href="editar/{{jugadores.id}}" class="btn btn-secondary">Editar </a>
+
+                      <a href="eliminar/{{jugadores.id}}" class="btn btn-danger">Borrar</a>
+                      
+                      
+                    </td>
+                    
+                  {% endif %}
+                  
+                {% endfor %}
+                
+              {% endif %}
+              
+            {% endfor %}
+            
+          </tr>
+          
+          {% endfor %}
+          
+        </tbody>
+        
+      </table>
+      
+    </div>
+    {% endblock %}
+   
+
+  </div>
+
+  <script src="{% static 'js/bootstrap.min.js' %}"></script> 
+
+</body>
+
+</html>

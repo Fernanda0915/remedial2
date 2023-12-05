@@ -1,0 +1,15 @@
+{% extends 'Inicio.html' %}
+
+{% block content %}
+    <h1>crear</h1>
+    
+    <form action="/crear/" method="POST">
+        {% csrf_token %}
+        
+        {{form}}
+        {{form2}}
+       
+    <button>Save</button>
+    </form>
+   
+{% endblock %}
